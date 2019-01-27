@@ -14,6 +14,9 @@ import Login from './src/authScreen/login/Login';
 import ForgotPassword from './src/authScreen/forgotPassword/ForgotPassword';
 import TabNavigator from './src/navigation/tabNavigation/TabNavigator';
 import DrawerNavigator from './src/navigation/drawerNavigation/DrawerNavigator';
+import SignUp1 from './src/screens/SignUp/Signup1';
+import BasicHealthInput from './src/screens/SignUp/basicHealthInput';
+import ProfilePic from './src/screens/SignUp/addProfilePic';
 
 export default class App extends Component{
   render() {
@@ -38,6 +41,17 @@ const AppStackNavigator = createStackNavigator({
 
   DrewerNav:{
     screen:DrawerNavigator
+  },
+
+  SignUp1:{
+    screen:SignUp1
+  },
+
+  SignUp2:{
+    screen:BasicHealthInput
+  },
+  SignUp3:{
+    screen:ProfilePic
   }
 
 

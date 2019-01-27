@@ -47,8 +47,8 @@ class CustomHeader extends Component{
 
         return(
             <View> 
-                 <Header  style={{ backgroundColor: colors.greenPrimary }}
-          androidStatusBarColor={colors.greenDark}>
+                 <Header  style={{ backgroundColor: colors.header_blue }}
+          androidStatusBarColor={colors.tab_color_blue}>
                     <Left>
                         {/* <Button
                             transparent

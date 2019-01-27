@@ -8,5 +8,8 @@ export default{
     pink:"#fc4c54",
     green01:'#008388',
     notice_border:"#12005e",
-    notice_divider:'#4a148c'
+    notice_divider:'#4a148c',
+    header_blue: '#19334d',
+    dark_blue: '#132639',
+    tab_color_blue: '#204060',
 }

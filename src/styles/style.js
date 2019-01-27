@@ -29,7 +29,7 @@ export default StyleSheet.create({
     },
     buttonStyle: { //styling for TouchableOpacity
         padding: 15,
-        backgroundColor: '#19334d',
+        backgroundColor: '#3973ac',
         borderRadius: 5,
         width: '50%',
         alignItems: 'center',
@@ -50,7 +50,7 @@ export default StyleSheet.create({
     },
     signupTxt: {
         fontSize: 20,
-        color: 'white'
+        color: 'black'
     },
     signupButton: {
         fontSize: 16,
