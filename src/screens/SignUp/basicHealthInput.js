@@ -22,10 +22,12 @@ export default class BasicHealthInput extends Component {
         const { parent, signupTxtCont, signupTxt, signupButton, pbar, progBar, form, nextButton } = style
         return (
             <View style={parent}>
-                <CustomHeader
-                    title="Basic Health Infromation"
-                    openDrawer={() => this.props.navigation.openDrawer()}
-                    iconName="md-phone-portrait"
+                <CustomHeader 
+                    title="Basic Health Information"
+                    leftPress={() => this.props.navigation.goBack()}
+                    iconNameRight="md-git-network"
+                    iconName="arrow-round-back"
+                    type="sub"
                 />
                 <View style={progBar}>
                     <ProgressBarAndroid

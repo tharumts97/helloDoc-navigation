@@ -52,6 +52,12 @@ export default class RegForm extends Component {
                     onChangeText={(text) => {this.mobile =text}}
                     value= {this.mobile}
                 />
+                <TextInput 
+                    style={input} 
+                    placeholder='Enter Occupation' 
+                    onChangeText={(text) => {this.mobile =text}}
+                    value= {this.mobile}
+                />
 
                {/*<TouchableOpacity
                     style={buttonStyle} onPress= {this.profile}>

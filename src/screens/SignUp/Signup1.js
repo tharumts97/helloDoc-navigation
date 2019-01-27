@@ -19,10 +19,12 @@ export default class SignUp1 extends Component {
         const { parent, signupTxtCont, signupTxt, signupButton, nextButton } = style
         return (
             <View style={parent}>
-                <CustomHeader
-                    title="Basic Infromation"
-                    openDrawer={() => this.props.navigation.openDrawer()}
-                    iconName="md-phone-portrait"
+                <CustomHeader 
+                    title="Basic Information"
+                    leftPress={() => this.props.navigation.goBack()}
+                    iconNameRight="md-git-network"
+                    iconName="arrow-round-back"
+                    type="sub"
                 />
                 <RegForm type="SignUp" />
                 <View>

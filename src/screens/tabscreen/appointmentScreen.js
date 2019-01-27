@@ -21,6 +21,10 @@ export default class AppointmentScreen extends Component {
         };
     }
 
+    pickdateHandler = () => {
+        this.props.navigation.navigate('PickDateApp')
+    }
+
     render() {
 
         const { parent, headText, drpView, drpDown, radText, modalView,
@@ -53,18 +57,9 @@ export default class AppointmentScreen extends Component {
                     >
                     </DropdownMenu>
                 </View>
-                {/*
-                <View style={radView}>
-                    <Text style={radText}>Available Doctors</Text>
-                    <RadioButton />
-                    <View style={modalView}>
-                        <ModalTester />
-                    </View>
-                    
-                    
-        </View>*/}
+              
                 <View style={iconView}>
-                        <TouchableOpacity onPress={() => this.props.navigation.navigate("viewpres")}>
+                        <TouchableOpacity onPress={this.pickdateHandler}>
                             <Icon name='md-arrow-dropright-circle' size={40} style={iconimg} />
                         </TouchableOpacity>
                         </View>

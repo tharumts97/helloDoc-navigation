@@ -17,6 +17,8 @@ import DrawerNavigator from './src/navigation/drawerNavigation/DrawerNavigator';
 import SignUp1 from './src/screens/SignUp/Signup1';
 import BasicHealthInput from './src/screens/SignUp/basicHealthInput';
 import ProfilePic from './src/screens/SignUp/addProfilePic';
+import PickDate from './src/screens/Appointment/PickDate';
+import PickTime from './src/screens/Appointment/PickTime';
 
 export default class App extends Component{
   render() {
@@ -52,6 +54,14 @@ const AppStackNavigator = createStackNavigator({
   },
   SignUp3:{
     screen:ProfilePic
+  },
+
+  PickDateApp:{
+    screen:PickDate
+  },
+
+  PickTimeApp:{
+    screen:PickTime
   }
 
 

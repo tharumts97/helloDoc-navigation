@@ -17,10 +17,12 @@ export default class ProfilePic extends Component {
         const { parent, signupTxtCont, signupTxt, signupButton, pbar, progBar, form } = style
         return (
             <View style={parent}>
-                <CustomHeader
+                <CustomHeader 
                     title="Add Profile Picture"
-                    openDrawer={() => this.props.navigation.openDrawer()}
-                    iconName="md-phone-portrait"
+                    leftPress={() => this.props.navigation.goBack()}
+                    iconNameRight="md-git-network"
+                    iconName="arrow-round-back"
+                    type="sub"
                 />
                 <View style={progBar}>
                     <ProgressBarAndroid
