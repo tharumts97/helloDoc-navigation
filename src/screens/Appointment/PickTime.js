@@ -18,6 +18,10 @@ export default class PickTime extends Component {
         }
     }
 
+    summaryHandler = () => {
+        this.props.navigation.navigate('appSummary')
+    }
+
     _alertIndex(index) {
         Alert.alert(`Time slot is ${index + 1}`);
     }
@@ -57,9 +61,9 @@ export default class PickTime extends Component {
                     }
                 </Table>
 
-                {/* <TouchableOpacity onPress={this.six} style={styles.button}>
-                    <Text style={styles.buttonText}>next</Text>
-                </TouchableOpacity> */}
+                <TouchableOpacity onPress={this.summaryHandler} style={styles.button}>
+                    <Text style={styles.buttonText}>Confirm</Text>
+                </TouchableOpacity>
 
             </View>
 

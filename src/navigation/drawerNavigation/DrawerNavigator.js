@@ -3,15 +3,14 @@ import { StyleSheet, Text, View, SafeAreaView, ScrollView, Dimensions, Image} fr
 import { createDrawerNavigator, DrawerItems } from 'react-navigation';
 import Icon from 'react-native-vector-icons/FontAwesome5';
 import TabNavigator from '../tabNavigation/TabNavigator'
-import DrawerScreen1 from '../../screens/drawerScreen/DrawerScreen1'
-import DrawerScreen2 from '../../screens/drawerScreen/DrawerScreen2'
-import DrawerScreen3 from '../../screens/drawerScreen/DrawerScreen3'
+import PatientProfile from '../../screens/drawerScreen/Profile/PatientProfile'
+import ViewBasicHealthInfo from '../../screens/drawerScreen/Profile/viewBasicHealthInfo'
 // import { Right } from 'native-base';
 
 const CustomDrawerComponent = (props)=>(
   <SafeAreaView>
       <View style={{height:150, backgroundColor:'white', alignItems:'center', justifyContent:'center'}}>
-          <Image source={require('../../Images/user.jpg')} style={{height:120, width:120, borderRadius:60}} />
+          <Image source={require('../../Images/user.png')} style={{height:120, width:120, borderRadius:60}} />
       </View>
       <ScrollView>
           <DrawerItems {...props} />
@@ -29,29 +28,22 @@ export default createDrawerNavigator({
     }
   },
 
-  DrawerScreen1: {
-    screen: DrawerScreen1,
+  PatientProfile: {
+    screen: PatientProfile,
     navigationOptions: {
-      drawerLabel: 'DrawerScreen1',
+      drawerLabel: 'PatientProfile',
       drawerIcon: ({ tintColor }) => <Icon name="user-circle" size={17} />,
     }
   },
 
-  DrawerScreen2: {
-    screen: DrawerScreen2,
+  ViewBasicHealthInfo:{
+    screen: ViewBasicHealthInfo,
     navigationOptions: {
-      drawerLabel: 'DrawerScreen2',
+      drawerLabel: 'ViewBasicHealthInfo',
       drawerIcon: ({ tintColor }) => <Icon name="user-circle" size={17} />,
     }
   },
 
-  DrawerScreen3: {
-    screen: DrawerScreen3,
-    navigationOptions: {
-      drawerLabel: 'DrawerScreen3',
-      drawerIcon: ({ tintColor }) => <Icon name="user-circle" size={17} />,
-    }
-  },
 },
 {
   drawerPosition :"right",
