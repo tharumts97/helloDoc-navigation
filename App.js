@@ -11,7 +11,6 @@ import {Platform, StyleSheet, Text, View} from 'react-native';
 import { createStackNavigator } from 'react-navigation';
 
 import Login from './src/authScreen/login/Login';
-import ForgotPassword from './src/authScreen/forgotPassword/ForgotPassword';
 import TabNavigator from './src/navigation/tabNavigation/TabNavigator';
 import DrawerNavigator from './src/navigation/drawerNavigation/DrawerNavigator';
 import SignUp1 from './src/screens/SignUp/Signup1';
@@ -25,6 +24,8 @@ import ViewLabReport from './src/screens/Prescription/ViewLabReport';
 import ViewCurrentState from './src/screens/drawerScreen/currentState/viewState';
 import ViewMenu from './src/screens/Prescription/ViewMenu';
 import AppointmentSummary from './src/screens/Appointment/ViewAppDetails';
+import ForgotPassword from './src/authScreen/forgotPassword/ForgotPassword';
+import AppointmentScreen from './src/screens/tabscreen/appointmentScreen';
 
 export default class App extends Component{
   render() {
@@ -92,6 +93,14 @@ const AppStackNavigator = createStackNavigator({
 
   appSummary:{
     screen:AppointmentSummary
+  },
+
+  forgotpw:{
+    screen:ForgotPassword
+  },
+
+  appback:{
+    screen:AppointmentScreen
   }
 
 

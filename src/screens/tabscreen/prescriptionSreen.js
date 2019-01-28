@@ -57,7 +57,7 @@ export default class PrescriptionScreen extends Component {
                 <CustomHeader
                     title="PrescriptionScreen"
                     openDrawer={() => this.props.navigation.openDrawer()}
-                    iconName="ios-list-box"
+                    iconName="ios-list"
                 />
 
                 <View style={parent}>
@@ -102,7 +102,7 @@ export default class PrescriptionScreen extends Component {
 PrescriptionScreen.navigationOptions = {
     tabBarIcon: ({ tintColor, focused }) => (
         <Icon
-            name={focused ? 'ios-list-box' : 'ios-list-box'}
+            name={focused ? 'ios-list' : 'ios-list'}
             size={28}
             color={tintColor}
         />

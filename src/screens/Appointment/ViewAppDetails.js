@@ -4,6 +4,7 @@ import { View, StyleSheet,TouchableOpacity,Text } from 'react-native';
 import style from '../../styles/style';
 import CustomHeader from '../../components/Header/Header';
 import { Table, TableWrapper, Row, Rows, Col } from 'react-native-table-component';
+import Icon from 'react-native-vector-icons/Ionicons';
 
 export default class AppointmentSummary extends Component {
 
@@ -22,9 +23,13 @@ export default class AppointmentSummary extends Component {
         }
     }
 
+    appointmentHandler = () => {
+        this.props.navigation.navigate('appback')
+    }
+
     render() {
         const state = this.state;
-        const { parent, signupTxtCont, signupTxt, buttonStyle, nextButton } = style
+        const { parent, iconimg,iconView } = style
         return (
             <View style={parent}>
                 <CustomHeader
@@ -45,6 +50,11 @@ export default class AppointmentSummary extends Component {
                     </Table>
                 </View>
 
+                <View style={iconView}>
+                        <TouchableOpacity onPress={this.appointmentHandler}>
+                            <Icon name='md-arrow-dropleft-circle' size={40} style={iconimg} />
+                        </TouchableOpacity>
+                        </View>
             </View>
         )
     }

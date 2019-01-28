@@ -71,7 +71,7 @@ const styles = StyleSheet.create({
         backgroundColor: 'white',
         flex: 1,
         alignItems: 'center',
-        marginLeft:30,
+        marginLeft:50,
         marginTop:200,
         width:300
     },
@@ -86,7 +86,7 @@ const styles = StyleSheet.create({
         marginVertical: 10,
         paddingVertical: 12,
         marginTop:200,
-        marginLeft:40
+        marginLeft:80
 
 
 

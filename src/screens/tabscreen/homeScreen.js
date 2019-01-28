@@ -18,7 +18,7 @@ constructor(props){
                 <CustomHeader 
                     title="Home"
                     openDrawer={() => this.props.navigation.openDrawer()}
-                    iconName="ios-list-box"
+                    iconName="ios-list"
                 />
                 <Text> Home </Text>
              </View>

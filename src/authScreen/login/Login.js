@@ -21,6 +21,10 @@ class Login extends Component {
     signupHandler = () => {
         this.props.navigation.navigate('SignUp1')
     }
+    forgotpwHandler = () => {
+        this.props.navigation.navigate('forgotpw')
+    }
+
     render() {
         const { parent, signupButton, signupTxt, signupTxtCont,loginTxt,input,buttonStyle } = style
 
@@ -35,6 +39,11 @@ class Login extends Component {
                     <Button onPress={this.loginHandler} style={buttonStyle}>
                         <Text>Login</Text>
                     </Button>
+                </View>
+                <View style={signupTxtCont}>
+                <TouchableOpacity onPress={this.forgotpwHandler}>
+                        <Text style={signupButton}>Forgot Password?</Text>
+                    </TouchableOpacity>
                 </View>
                 <View style={signupTxtCont}>
                     <Text style={signupTxt}>Dont have an account yet?</Text>
