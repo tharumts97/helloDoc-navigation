@@ -26,6 +26,7 @@ import ViewMenu from './src/screens/Prescription/ViewMenu';
 import AppointmentSummary from './src/screens/Appointment/ViewAppDetails';
 import ForgotPassword from './src/authScreen/forgotPassword/ForgotPassword';
 import AppointmentScreen from './src/screens/tabscreen/appointmentScreen';
+import SelectDoctor from './src/screens/Appointment/selectDoc';
 
 export default class App extends Component{
   render() {
@@ -61,6 +62,10 @@ const AppStackNavigator = createStackNavigator({
   },
   SignUp3:{
     screen:ProfilePic
+  },
+
+  selectDoc:{
+    screen:SelectDoctor
   },
 
   PickDateApp:{

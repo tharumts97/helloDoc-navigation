@@ -127,7 +127,8 @@ export default StyleSheet.create({
     iconView: {
         flex: 1,
         alignItems:'baseline',
-        marginLeft:350
+        marginLeft:350,
+        marginTop:300
     },
 
     container: {
