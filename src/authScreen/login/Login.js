@@ -18,6 +18,7 @@ class Login extends Component {
             emailAddress:'',
             password:'', 
             validEmail:false,
+            validPassword:false
         }
 
     }
@@ -27,37 +28,47 @@ class Login extends Component {
         console.log("in loginHandler "+this.state.emailAddress);
         console.log("in loginHandler "+this.state.password)
 
-        url='https://ems.aladinlabs.com/api/auth/login';
+        // url='https://ems.aladinlabs.com/api/auth/login';
         // url='http://localhost:3000/users/login';
+        // url='http://10.10.23.5:3000/users/login';
+        url='https://hello-doc-app.herokuapp.com/users/login';
+
+
+
+        
 
         console.log(url);
 
         fetch(url,{
             method:'POST',
             headers:{
-                'Content-Type':'application/json',
-                'X-Requested-With':'XMLHttpRequest'
+                'Content-Type':'application/json'
+                
+                // 'X-Requested-With':'XMLHttpRequest'
             },
             body:JSON.stringify({
                 // email:this.state.email,
                 // password:this.state.password,
                 // remember_me:true
 
-                email:'student@ems.com',
-                password:'abc123',
-                remember_me:true
-                // email:'patient@gamil.com',
-                // password:'1111',
-                // roleId:'002'
+                // email:'student@ems.com',
+                // password:'abc123',
+                // remember_me:true
+                email:'cha@gmail.com',
+                password:'0000',
+                role:"002"
                 // // remember_me:true
             })
         })
         .then((response)=> response.json())
+        // .then((response)=> console.log(response))
+
         .then((resJson)=>{
             // console.log(resJson);
             this.dataHandler(resJson);
         })
 
+        
 
         this.props.navigation.navigate('DrewerNav')
     }
@@ -66,13 +77,13 @@ class Login extends Component {
         console.log(" %%%%%%% dataHandler %%%%%%%%%%");
         console.log("In data Handler in Login ", data);
 
-        if(data.message === 'Unauthorized'){
-            console.log('Check ur username n email bcoz Unauthorized')
-            alert("Check ur username n email bcoz Unauthorized")
-            return
-        }
+        // if(data.message === 'Unauthorized'){
+        //     console.log('Check ur username n email bcoz Unauthorized')
+        //     alert("Check ur username n email bcoz Unauthorized")
+        //     return
+        // }
 
-        const token=data.access_token;
+        const token=data.token;
         console.log("in dataHandler token "+ token);
     
         this.setToken(token);
@@ -118,14 +129,32 @@ class Login extends Component {
         console.log("this state valid email in if "+this.state.validEmail);
 
     }
-
     handlerPasswordChange(password){
-        this.setState({ password:password});
+        this.setState({ password });
+        
+        if(!this.state.validPassword){
+            if(password.length >= 6 ){
+                //Password has to be at least 6 character long
+                this.setState({ validPassword: true})
+            }else if(password < 6){
+                this.setState({ validPassword: false});
+            }
+        }
 
+        console.log("in handle password : "+this.state.validPassword);
+    }
+
+    toggleNextButtonState(){
+        const { validEmail, validPassword }=this.state;
+        if(validEmail && validPassword ){
+            return false;
+        }
+        return true;
     }
 
     render() {
         const { parent, signupButton, signupTxt, signupTxtCont,loginTxt,input,buttonStyle } = style
+        // const opacityStyle= disabled? 0.2: 0.8;
 
         return (
             <View style={parent}>
@@ -144,7 +173,16 @@ class Login extends Component {
 
 
                 <View style={{ alignItems: 'center' }}>
-                    <Button onPress={this.loginHandler} style={buttonStyle}>
+                    <Button 
+                        onPress={this.loginHandler} 
+                        style={buttonStyle}
+                        // style={[{opacity:opacityStyle},buttonStyle]}
+
+                        // disabled={true}
+                        // disabled={this.state.validPassword && this.state.validPassword}
+
+                        // disabled={this.toggleNextButtonState()}
+                    >
                         <Text>Login</Text>
                     </Button>
                 </View>

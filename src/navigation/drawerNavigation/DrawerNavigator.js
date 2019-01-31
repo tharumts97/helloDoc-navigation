@@ -16,7 +16,7 @@ const CustomDrawerComponent = (props)=>(
       <ScrollView>
           <DrawerItems {...props} />
       </ScrollView>
-  </SafeAreaView>
+  </SafeAreaView> 
 )
 
 

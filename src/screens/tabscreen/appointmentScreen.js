@@ -4,6 +4,7 @@ import {
     Text,
     StyleSheet,
     TouchableOpacity,
+    AsyncStorage
 } from 'react-native';
 
 import Icon from 'react-native-vector-icons/Ionicons';
@@ -22,8 +23,26 @@ export default class AppointmentScreen extends Component {
     }
 
     selectdocHandler = () => {
+        console.log("selectdocHandler in appoiment "+this.state.text);
+        this.setField();
         this.props.navigation.navigate('selectDoc')
     }
+
+    async setField(){
+        var field=this.state.text;
+        console.log("setField in appoinmentScreen "+field);
+
+        try{
+            await AsyncStorage.setItem("field",field);
+            console.log("field saved in async ")
+            alert('field saves asyn');
+            // this.getToken();
+          }catch(error){
+            alert("field store error");
+          }
+
+
+    }    
 
     render() {
 

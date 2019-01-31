@@ -12,7 +12,54 @@ export default class PickDate extends Component {
     constructor(props) {
         super(props)
         //set value in state for initial date
-        this.state = { date: "15-05-2018" }
+        this.state = { 
+            date: "2019-02-02" ,
+            currentDate:''
+        
+        }
+    }
+
+    componentDidMount(){ 
+        this.getDate();
+    }
+
+    getDate(){
+        console.log("Pick Date");
+
+        let today = new Date().toISOString().slice(0, 10)
+
+        console.log(today)
+
+        // var x = 2; //or whatever offset
+        // var CurrentDate = new Date();
+        // CurrentDate.setMonth(CurrentDate.getMonth() + x);
+        // console.log("CurrentDate.setMonth(CurrentDate.getMonth() + x); "+CurrentDate);
+
+        // var d = new Date();
+        // CurrentDate.setMonth(CurrentDate.getMonth() + x);
+        // today.setMonth(today.getMonth() + 10);
+
+
+        // var maxDate=today.setMonth(today.getMonth() - 3);
+        this.setCurrentDate(today);
+
+        // console.log("var maxDate=setMonth(today.getMonth() - 3); "+maxDate);
+
+        
+
+    }
+
+    setCurrentDate(today){
+        console.log(" setCurrentDate "+ today);
+
+        // this.state.currentDate=today
+        this.setState({
+            currentDate:today
+        })
+
+        console.log(" getDate in state "+ this.state.currentDate+ " dfdfd");
+
+
     }
 
     picktimeHandler = () => {
@@ -20,6 +67,7 @@ export default class PickDate extends Component {
     }
 
     render() {
+        console.log("I am in Render " +this.state.currentDate+" ***********");
         return (
             <View>
                 <CustomHeader 
@@ -29,33 +77,36 @@ export default class PickDate extends Component {
                     iconName="arrow-round-back"
                     type="sub"
                 />
-                <DatePicker
-                    style={styles.container}
-                    date={this.state.date} //initial date from state
-                    mode="date" //The enum of date, datetime and time
-                    placeholder="select date"
-                    format="DD-MM-YYYY"
-                    minDate="01-01-2018"
-                    maxDate="01-01-2020"
-                    confirmBtnText="Confirm"
-                    cancelBtnText="Cancel"
 
+<DatePicker
+        // style={[{width: 200},styles.container]}
+        // style={{width: 200}}
+        style={styles.container}
+        date={this.state.currentDate}
+        mode="date"
+        placeholder="select date"
+        format="YYYY-MM-DD"
+        // minDate="2019-01-01"
+        minDate={this.state.currentDate}
+        maxDate="2019-12-31"
+        confirmBtnText="Confirm"
+        cancelBtnText="Cancel"
+        customStyles={{
+          dateIcon: {
+            position: 'absolute',
+            left: 0,
+            top: 4,
+            marginLeft: 0
+          },
+          dateInput: {
+            marginLeft: 36
+          }
+          // ... You can check the source to find the other keys.
+        }}
+        onDateChange={(date) => {this.setState({currentDate: date})}}
+      />
 
-                    customStyles={{
-                        dateIcon: {
-                            position: 'absolute',
-                            left: 0,
-                            top: 4,
-                            marginLeft: 0,
-                        },
-                        dateInput: {
-                            marginLeft: 36
-                        }
-                    }}
-                    onDateChange={(date) => { this.setState({ date: date }) }}
-
-
-                />
+                <Text>Date Picker</Text>
                 <View>
                 <TouchableOpacity onPress={this.picktimeHandler} style={styles.button}>
                     <Text style={styles.buttonText}>Time Slots</Text>
@@ -68,8 +119,8 @@ export default class PickDate extends Component {
 }
 const styles = StyleSheet.create({
     container: {
-        backgroundColor: 'white',
-        flex: 1,
+        // backgroundColor: 'white',
+        // flex: 1,
         alignItems: 'center',
         marginLeft:50,
         marginTop:200,

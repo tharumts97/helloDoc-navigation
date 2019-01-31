@@ -37,6 +37,11 @@ export default class App extends Component{
 }
 
 const AppStackNavigator = createStackNavigator({  
+
+  // PickDateApp:{
+  //   screen:PickDate
+  // },
+
   Login:{
     screen:Login
   },

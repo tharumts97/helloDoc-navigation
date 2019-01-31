@@ -15,7 +15,7 @@ import style from '../../styles/style';
 import Icon from 'react-native-vector-icons/Ionicons';
 import CustomHeader from '../../components/Header/Header';
 
-export default class SelectDoctor extends Component {
+export default class DocList extends Component {
 
     constructor(props) {
         super(props);
@@ -35,6 +35,7 @@ export default class SelectDoctor extends Component {
                 { id: "7", firstName: "Dr.Janaka ",lastName:"Kuruwita", position: "Dentist", image: "https://bootdey.com/img/Content/avatar/avatar7.png", about: "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo." },
             ]
         };
+        this.docHandler=this.docHandler.bind(this);
     }
 
     clickEventListener = (item) => {
@@ -52,9 +53,11 @@ export default class SelectDoctor extends Component {
     }
 
     docHandler(){
-        console.log("in docHandler");
+        console.log(" docHandler ");
+        console.log(this.props)
+        // PickDateApp
         this.props.navigation.navigate('PickDateApp')
-
+        
     }
 
     // render() {
@@ -150,7 +153,7 @@ export default class SelectDoctor extends Component {
                             <TouchableOpacity key={key}
                                     onPress={()=>this.docHandler()}
                                 >
-                                <Text>{val.firstName} {val.lastName}</Text>
+                                <Text>Dr {val.firstName} {val.lastName}</Text>
                                 <Text>{val.NIC}</Text>
                                 <Text>{val.doctorDesignation}</Text>
                                 <Text>{val.doctorField}</Text>
@@ -171,13 +174,9 @@ export default class SelectDoctor extends Component {
                 return(
                     <View>
                         <ScrollView>
-                        <CustomHeader
-                            title="Select Doctor"
-                            leftPress={() => this.props.navigation.goBack()}
-                            iconNameRight="md-git-network"
-                            iconName="arrow-round-back"
-                            type="sub"
-                        />
+                            <TouchableOpacity>
+                                <Text>Click</Text>
+                            </TouchableOpacity>
 
                             {doctor_list}
                         </ScrollView>
@@ -759,52 +758,3 @@ const styles = StyleSheet.create({
 //     //     color: '#ffffff'
 //     //   }
 // });
-
-
-
-// import React, { Component } from 'react';
-
-// import { View, StyleSheet,TouchableOpacity,Text } from 'react-native';
-// import style from '../../styles/style';
-// import CustomHeader from '../../components/Header/Header';
-// import { Table, TableWrapper, Row, Rows, Col } from 'react-native-table-component';
-// import Icon from 'react-native-vector-icons/Ionicons';
-// import DocList from '../../components/docList/DocList';
-
-// export default class AppointmentSummary extends Component {
-
-//     constructor(props) {
-//         super(props);
-//         this.state = {
-//         }
-//     }
-
-//     render() {
-//         const state = this.state;
-//         const { parent, iconimg,iconView } = style
-//         return (
-//             <View >
-//                 <CustomHeader
-//                     title="Appointment Summary"
-//                     leftPress={() => this.props.navigation.goBack()}
-//                     iconNameRight="md-git-network"
-//                     iconName="arrow-round-back"
-//                     type="sub"
-//                 />
-
-//                 <DocList />
-
-                
-//             </View>
-//         )
-//     }
-// }
-
-// const styles = StyleSheet.create({
-//     container: { flex: 1, padding: 16, paddingTop: 80, backgroundColor: '#fff' },
-//     head: {  height: 40,  backgroundColor: '#f1f8ff'  },
-//     wrapper: { flexDirection: 'row' },
-//     title: { flex: 1, width:40, backgroundColor: '#f6f8fa' },
-//     row: {  height: 28  },
-//     text: { textAlign: 'center' }
-//   });
