@@ -3,9 +3,10 @@ import {
     View,
     StyleSheet,
     TouchableOpacity,
-    TextInput
+    TextInput,
+    AsyncStorage
 } from 'react-native';
-import { Container, Header, Content, Button, Text } from 'native-base';
+import { Container, Header, Content, Button, Text, Body } from 'native-base';
 import style from '../../styles/style';
 import Logo from '../../components/login/logo';
 
@@ -13,16 +14,114 @@ class Login extends Component {
     constructor(props) {
                 super(props);
 
+        this.state={
+            emailAddress:'',
+            password:'', 
+            validEmail:false,
+        }
+
     }
 
     loginHandler = () => {
+        console.log(" loginHandler ");
+        console.log("in loginHandler "+this.state.emailAddress);
+        console.log("in loginHandler "+this.state.password)
+
+        url='https://ems.aladinlabs.com/api/auth/login';
+        // url='http://localhost:3000/users/login';
+
+        console.log(url);
+
+        fetch(url,{
+            method:'POST',
+            headers:{
+                'Content-Type':'application/json',
+                'X-Requested-With':'XMLHttpRequest'
+            },
+            body:JSON.stringify({
+                // email:this.state.email,
+                // password:this.state.password,
+                // remember_me:true
+
+                email:'student@ems.com',
+                password:'abc123',
+                remember_me:true
+                // email:'patient@gamil.com',
+                // password:'1111',
+                // roleId:'002'
+                // // remember_me:true
+            })
+        })
+        .then((response)=> response.json())
+        .then((resJson)=>{
+            // console.log(resJson);
+            this.dataHandler(resJson);
+        })
+
+
         this.props.navigation.navigate('DrewerNav')
     }
+
+    dataHandler(data){
+        console.log(" %%%%%%% dataHandler %%%%%%%%%%");
+        console.log("In data Handler in Login ", data);
+
+        if(data.message === 'Unauthorized'){
+            console.log('Check ur username n email bcoz Unauthorized')
+            alert("Check ur username n email bcoz Unauthorized")
+            return
+        }
+
+        const token=data.access_token;
+        console.log("in dataHandler token "+ token);
+    
+        this.setToken(token);
+    }
+
+
+    
+    async setToken(mytoken){
+        console.log(" setToken ****** "+mytoken)
+        try{
+          await AsyncStorage.setItem("token",mytoken);
+          alert('Token saves asyn');
+          // this.getToken();
+        }catch(error){
+          alert("token store error");
+        }
+      }
     signupHandler = () => {
         this.props.navigation.navigate('SignUp1')
     }
     forgotpwHandler = () => {
         this.props.navigation.navigate('forgotpw')
+    }
+
+    handleEmailChange(email){
+        const emailCheckRegex=/^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
+
+        this.setState({ emailAddress:email});
+
+        if(!this.state.validEmail){
+            if(emailCheckRegex.test(email)){
+                this.setState({ validEmail : true })
+                console.log("this state valid email in if "+this.state.validEmail);
+            }else{
+                if(!emailCheckRegex.test(email)){
+                    this.setState({ validEmail : false })
+                console.log("this state valid email in else "+this.state.validEmail);
+
+                }
+            }
+        }
+
+        console.log("this state valid email in if "+this.state.validEmail);
+
+    }
+
+    handlerPasswordChange(password){
+        this.setState({ password:password});
+
     }
 
     render() {
@@ -32,8 +131,17 @@ class Login extends Component {
             <View style={parent}>
                 <Logo style={alignItems='center'} />
                 <Text style={loginTxt}>Login</Text>
-                <TextInput style={input} underlineColorAndroid='#BDBDBD' placeholder="Username" onChangeText={text => this.setState({ username: text })} />
-                <TextInput style={input} secureTextEntry={true} placeholder="Password" onChangeText={text => this.setState({ password: text })} />
+                <TextInput 
+                    style={input} underlineColorAndroid='#BDBDBD' 
+                    placeholder="email"
+                    inputType="email"
+                    onChangeText={email=>this.handleEmailChange(email)} />
+                <TextInput 
+                    style={input} secureTextEntry={true} 
+                    placeholder="Password" 
+                    // onChangeText={text => this.setState({ password: text })} />
+                    onChangeText={password => this.handlerPasswordChange(password)} />
+
 
                 <View style={{ alignItems: 'center' }}>
                     <Button onPress={this.loginHandler} style={buttonStyle}>
