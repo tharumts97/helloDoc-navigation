@@ -55,14 +55,16 @@ export default class AppointmentScreen extends Component {
                         data={data}
                     >
                     </DropdownMenu>
-                </View>
-              
-                
-                <View style={iconView}>
+
+                    <View style={iconView}>
                     <TouchableOpacity onPress={this.selectdocHandler}>
                         <Icon name='md-arrow-dropright-circle' size={40} style={iconimg} />
                     </TouchableOpacity>
                 </View>
+                </View>
+              
+                
+                
                         
             </View>
 

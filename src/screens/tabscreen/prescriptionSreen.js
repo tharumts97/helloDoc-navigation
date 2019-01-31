@@ -53,7 +53,7 @@ export default class PrescriptionScreen extends Component {
 
         return (
 
-            <View>
+            <View style={{flexGrow: 1}}>
                 <CustomHeader
                     title="PrescriptionScreen"
                     openDrawer={() => this.props.navigation.openDrawer()}

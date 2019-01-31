@@ -8,8 +8,8 @@ export default StyleSheet.create({
     input: {
         marginLeft: 20,
         marginRight: 20,
-        backgroundColor: '#76B0C6',
-        marginBottom: 5,
+        backgroundColor: '#3973ac',
+        marginBottom: 3,
         justifyContent: 'center',
         borderRadius: 5
     },
@@ -127,8 +127,8 @@ export default StyleSheet.create({
     iconView: {
         flex: 1,
         alignItems:'baseline',
-        marginLeft:350,
-        marginTop:300
+        marginLeft:300,
+        marginTop:250
     },
 
     container: {
@@ -180,5 +180,26 @@ export default StyleSheet.create({
 
     textInp:{
         borderWidth:1
-    }
+    },
+
+    homeName:{
+        fontSize:35,
+        fontWeight:'bold'
+    },
+
+    homeView:{
+        padding:10,
+        alignItems:'center'
+    },
+    homepic: {
+        width: 500,
+        height: 300,
+        alignItems: 'center',
+        flexDirection: 'column',
+
+    },
+
+    homedesc:{
+        fontSize:25
+    },
 })

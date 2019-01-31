@@ -67,7 +67,7 @@ export default class CurrentStateScreen extends Component {
           {/*Clicking on button will show the rating as an alert*/}
           <Text>Get Selected Value</Text>
         </TouchableOpacity>
-        <View>
+        <View style={{padding:20}}>
           <Text style={styles.textStyle}> Comments or any Symptoms?</Text>
           <TextInput
             style={styles.rateView}

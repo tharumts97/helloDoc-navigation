@@ -44,7 +44,7 @@ export default class NotificationScreen extends Component {
                  <CustomHeader
                     title="NotificationScreen"
                     openDrawer={() => this.props.navigation.openDrawer()}
-                    iconName="ios-notifications-outline"
+                    iconName="ios-notifications"
                 />
                 
 
@@ -78,7 +78,7 @@ export default class NotificationScreen extends Component {
 NotificationScreen.navigationOptions = {
     tabBarIcon: ({ tintColor, focused }) => (
         <Icon
-            name={focused ? 'ios-notifications-outline' : 'ios-notifications'}
+            name={focused ? 'ios-notifications' : 'ios-notifications'}
             size={28}
             color={tintColor}
         />
