@@ -153,7 +153,7 @@ export default class DocList extends Component {
                             <TouchableOpacity key={key}
                                     onPress={()=>this.docHandler()}
                                 >
-                                <Text>Dr {val.firstName} {val.lastName}</Text>
+                                <Text>Dr {val.firstName}</Text>
                                 <Text>{val.NIC}</Text>
                                 <Text>{val.doctorDesignation}</Text>
                                 <Text>{val.doctorField}</Text>
@@ -162,6 +162,7 @@ export default class DocList extends Component {
                                 <Text>{val.addCity}</Text>
                                 <Text>{val.contactNo}</Text>
                                 <Text>{val.email}</Text>
+
 
                             </TouchableOpacity>
 

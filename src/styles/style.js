@@ -202,4 +202,6 @@ export default StyleSheet.create({
     homedesc:{
         fontSize:25
     },
+
+    
 })

@@ -3,6 +3,7 @@ package com.root;
 import android.app.Application;
 
 import com.facebook.react.ReactApplication;
+import com.kishanjvaghela.cardview.RNCardViewPackage;
 import com.tkporter.sendsms.SendSMSPackage;
 import com.swmansion.gesturehandler.react.RNGestureHandlerPackage;
 import com.oblador.vectoricons.VectorIconsPackage;
@@ -26,6 +27,7 @@ public class MainApplication extends Application implements ReactApplication {
     protected List<ReactPackage> getPackages() {
       return Arrays.<ReactPackage>asList(
           new MainReactPackage(),
+            new RNCardViewPackage(),
             SendSMSPackage.getInstance(),
             new RNGestureHandlerPackage(),
             new VectorIconsPackage()

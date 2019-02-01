@@ -9,11 +9,13 @@ import {
     Dimensions,
     Modal,
     ScrollView,
-    ActivityIndicator
+    ActivityIndicator,
+    AsyncStorage
 } from 'react-native';
 import style from '../../styles/style';
 import Icon from 'react-native-vector-icons/Ionicons';
 import CustomHeader from '../../components/Header/Header';
+import { Container, Header, Content, Card, CardItem, Body } from 'native-base'
 
 export default class SelectDoctor extends Component {
 
@@ -22,19 +24,121 @@ export default class SelectDoctor extends Component {
         this.state = {
             modalVisible: false,
             userSelected: [],
-            isLoading:false,
+            isLoading:true,
             data: [
 
-                { id: "1", firstName: "Sudesh ",lastName:"Agravat", position: "Psychiatrist", image: "https://bootdey.com/img/Content/avatar/avatar1.png", about1: "Colombo General Hospital", about2:"Experience - 5 years", about3:"Contact - 0715645234" },
-                { id: "2", firstName: "Dr.Mahesh ",lastName:"Silva", position: "Physician", image: "https://bootdey.com/img/Content/avatar/avatar6.png", about: "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo." },
-                { id: "3", firstName: "Dr.Anoma ",lastName:"Perera", position: "Physician", image: "https://bootdey.com/img/Content/avatar/avatar5.png", about: `Lorem </br> ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo.` },
-                { id: "4", firstName: "Dr.Rukhaiya ",lastName:"Buhari", position: "VOG", image: "https://bootdey.com/img/Content/avatar/avatar3.png", about: "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo." },
-                { id: "5", firstName: "Dr.Dilan ",lastName:"Manathunga", position: "Cardiologist", image: "https://bootdey.com/img/Content/avatar/avatar2.png", about: "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo." },
-                { id: "6", firstName: "Dr.Kasun ",lastName:"Jayaweera", position: "Dermatologist", image: "https://bootdey.com/img/Content/avatar/avatar1.png", about: "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo." },
-                { id: "6", firstName: "Dr.Sanath ",lastName:"De Silva", position: "Eye Specialist", image: "https://bootdey.com/img/Content/avatar/avatar4.png", about: "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo." },
-                { id: "7", firstName: "Dr.Janaka ",lastName:"Kuruwita", position: "Dentist", image: "https://bootdey.com/img/Content/avatar/avatar7.png", about: "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo." },
+                { id: "1", firstName: "Sudesh ",lastName:"Agravat", doctorField: "Psychiatrist", doctorRegNo: "MBBS202",workAddress:"General Hospital, Colombo" ,contactNo:"0715678765" ,image: "https://bootdey.com/img/Content/avatar/avatar1.png", about1: "Colombo General Hospital", about2:"Experience - 5 years", about3:"Contact - 0715645234" },
+                { id: "2", firstName: "Dr.Mahesh ",lastName:"Silva", doctorField: "Physician", doctorRegNo: "MBBS205",workAddress:"General Hospital, Colombo" ,contactNo:"0715098765" ,image: "https://bootdey.com/img/Content/avatar/avatar6.png", about: "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo." },
+                { id: "3", firstName: "Dr.Anoma ",lastName:"Perera", doctorField: "Physician", doctorRegNo: "MBBS567",workAddress:"Kalubowila Base Hospital" ,contactNo:"0775228765" , image: "https://bootdey.com/img/Content/avatar/avatar5.png", about: `Lorem </br> ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo.` },
+                { id: "4", firstName: "Dr.Rukhaiya ",lastName:"Buhari", doctorField: "VOG",doctorRegNo: "MBBS800",workAddress:"Kalubowila Base Hospital" ,contactNo:"0775000765" , image: "https://bootdey.com/img/Content/avatar/avatar3.png", about: "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo." },
+                { id: "5", firstName: "Dr.Dilan ",lastName:"Manathunga", doctorField: "Cardiologist",doctorRegNo: "MBBS802",workAddress:"District Hospital,Moratuwa" ,contactNo:"0786750765" , image: "https://bootdey.com/img/Content/avatar/avatar2.png", about: "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo." },
+                { id: "6", firstName: "Dr.Kasun ",lastName:"Jayaweera", doctorField: "Dermatologist", doctorRegNo: "MBBS1200",workAddress:"Kalubowila Base Hospital" ,contactNo:"0765000765" , image: "https://bootdey.com/img/Content/avatar/avatar1.png", about: "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo." },
+                { id: "6", firstName: "Dr.Sanath ",lastName:"De Silva", doctorField: "Eye Specialist", doctorRegNo: "MBBS100",workAddress:"General Hospital, Colombo" ,contactNo:"0785110765" , image: "https://bootdey.com/img/Content/avatar/avatar4.png", about: "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo." },
+                { id: "7", firstName: "Dr.Janaka ",lastName:"Kuruwita", doctorField: "Dentist", doctorRegNo: "MBBS3200",workAddress:"Kalubowila Base Hospital" ,contactNo:"0712435678" , image: "https://bootdey.com/img/Content/avatar/avatar7.png", about: "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo." },
             ]
         };
+
+    
+    }
+
+    
+
+    componentDidMount(){
+        this.getDoctorField()
+        // this.getDoctorDetails()
+             
+    }
+
+    async getDoctorField(){
+        console.log("getDoctorField");
+        try{
+            let field=await AsyncStorage.getItem("field");
+            console.log('field get asyn '+field);
+            this.set_field(field)
+            // this.getToken();
+          }catch(error){
+            alert("token store error");
+          }
+    }
+
+    set_field(field){
+        this.setState({
+            field:field
+        })
+
+        console.log("This state setFiels in select doc "+this.state.field);
+        this.getDoctorDetails()
+    }
+
+    async setToken(mytoken){
+        console.log(" setToken ****** "+mytoken)
+        try{
+          await AsyncStorage.setItem("token",mytoken);
+          alert('Token saves asyn');
+          // this.getToken();
+        }catch(error){
+          alert("token store error");
+        }
+      }
+
+    getDoctorDetails(){
+        console.log("I am in getDoctor Details in select doctor "+this.state.field);
+        if(this.state.field === null){
+            var search=''
+        }else{
+            var search=this.state.field
+        }
+
+        // fetch('https://hello-doc-app.herokuapp.com/doctor/viewdoctor/Surgeon',{
+        fetch(`https://hello-doc-app.herokuapp.com/doctor/viewdoctor/${search}`,{
+            method:'GET',
+            headers:{
+                'Content-Type':'application/json'
+                
+                // 'X-Requested-With':'XMLHttpRequest'
+            },
+        })
+        .then((response)=> response.json())
+        // .then((response)=> console.log(response))
+
+        .then((resJson)=>{
+            // console.log(resJson);
+            this.dataHandler(resJson);
+        })
+
+        
+
+        // this.props.navigation.navigate('DrewerNav');
+    }
+
+    dataHandler(data){
+        console.log(" %%%%%%% dataHandler %%%%%%%%%%");
+        console.log("In data Handler in select doctor ", data);
+
+        console.log("data.success "+data.success);
+
+        // if(data.message === 'Unauthorized'){
+        //     console.log('Check ur username n email bcoz Unauthorized')
+        //     alert("Check ur username n email bcoz Unauthorized")
+        //     return
+        // }
+
+        // const token=data.token;
+        // console.log("in dataHandler token "+ token);
+    
+        this.set_doctor_details(data.msg);
+    }
+
+    set_doctor_details(data){
+        console.log("set_doctor_details ",data);
+        this.setState({
+            doctor_details:data,
+            isLoading:false
+        })
+
+        console.log("set_doctor_details in state ", this.state.doctor_details);
+        console.log("set_doctor_details in state ", this.state.isLoading);
+
     }
 
     clickEventListener = (item) => {
@@ -53,6 +157,8 @@ export default class SelectDoctor extends Component {
 
     docHandler(){
         console.log("in docHandler");
+        console.log(this.props)
+
         this.props.navigation.navigate('PickDateApp')
 
     }
@@ -140,9 +246,14 @@ export default class SelectDoctor extends Component {
                     </View>
                 )
             }
+
+
             else{
 
-                let doctor_list=this.state.data.map((val, key) =>{
+                // let doctor_list=this.state.data.map((val, key) =>{
+                let doctor_list=this.state.doctor_details.map((val, key) =>{
+                    
+
                     return(
                         // <View>
                             
@@ -150,7 +261,11 @@ export default class SelectDoctor extends Component {
                             <TouchableOpacity key={key}
                                     onPress={()=>this.docHandler()}
                                 >
-                                <Text>{val.firstName} {val.lastName}</Text>
+                                 <Card>
+                                 <CardItem style={{backgroundColor:"#b3cce6"}}>
+                                <Body>
+
+                                <Text>DR : {val.firstName} {val.lastName}</Text>
                                 <Text>{val.NIC}</Text>
                                 <Text>{val.doctorDesignation}</Text>
                                 <Text>{val.doctorField}</Text>
@@ -159,6 +274,10 @@ export default class SelectDoctor extends Component {
                                 <Text>{val.addCity}</Text>
                                 <Text>{val.contactNo}</Text>
                                 <Text>{val.email}</Text>
+                                </Body>
+            </CardItem>
+          </Card>
+                              
 
                             </TouchableOpacity>
 
