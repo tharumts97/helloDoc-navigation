@@ -83,11 +83,26 @@ class Login extends Component {
         //     return
         // }
 
-        const token=data.token;
+        var token=data.token;
+        var email=data.email;
         console.log("in dataHandler token "+ token);
+        console.log("in dataHandler email "+ email);
     
         this.setToken(token);
+        this.setEmail(email);
+
     }
+
+    async setEmail(email){
+        console.log(" setEmail ****** "+email)
+        try{
+          await AsyncStorage.setItem("email",email);
+          console.log('email saves asyn');
+          // this.getToken();
+        }catch(error){
+          alert("email store error");
+        }
+      }
 
 
     

@@ -45,7 +45,7 @@ export default class SelectDoctor extends Component {
 
     componentDidMount(){
         this.getDoctorField()
-        // this.getDoctorDetails()
+        // this.getDoctorDetails() 
              
     }
 
