@@ -133,7 +133,7 @@ render(){
             <Image style={styles.avatar} source={require('../../../Images/patient1.png')} />
             <View style={styles.body}>
               <View style={styles.bodyContent}>
-                <Text style={styles.name}>John Doe</Text>
+                <Text style={styles.name}>{data.firstName} {data.lastName}</Text>
                 <View style={styles.pdetails}>
                   <Text>DOB:{data.dob}</Text>
                   <Text>Address:{data.addStreet}, {data.city}</Text>
