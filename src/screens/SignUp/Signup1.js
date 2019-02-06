@@ -12,7 +12,8 @@ export default class SignUp1 extends Component {
     }
 
     basicHealthHandler = () => {
-        this.props.navigation.navigate('SignUp2')
+        // this.props.navigation.navigate('SignUp2')
+        this.props.navigation.goBack();
     }
 
     render() {
@@ -30,7 +31,7 @@ export default class SignUp1 extends Component {
                 <View>
                     <TouchableOpacity
                         style={nextButton} onPress={this.basicHealthHandler}>
-                        <Text> Next </Text>
+                        <Text> Login </Text>
                     </TouchableOpacity>
                 </View>
                 <View style={signupTxtCont}>

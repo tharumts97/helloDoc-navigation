@@ -14,11 +14,11 @@ export default class AppointmentSummary extends Component {
             //tableHead: ['', 'Head1', 'Head2', 'Head3'],
             tableTitle: ['Doctor:', 'Date:', 'Time:', 'No:', 'Fee'],
             tableData: [
-                ['1'],
-                ['a'],
-                ['1'],
-                ['a'],
-                ['a']
+                ['Kapila'],
+                ['20-10-2019'],
+                ['17:30'],
+                ['10'],
+                ['1500']
             ]
         }
     }

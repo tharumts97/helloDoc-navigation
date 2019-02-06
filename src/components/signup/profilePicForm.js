@@ -32,7 +32,7 @@ export default class ProfileForm extends Component {
                     onChangeText={(text) => {this.weight =text}}
                     value= {this.weight} 
                 />
-               
+                
                 <View>
                     <TouchableOpacity
                         style={buttonStyle} onPress = {this.regButton}>

@@ -47,15 +47,15 @@ class Login extends Component {
                 // 'X-Requested-With':'XMLHttpRequest'
             },
             body:JSON.stringify({
-                // email:this.state.email,
-                // password:this.state.password,
+                email:this.state.email,
+                password:this.state.password,
                 // remember_me:true
 
                 // email:'student@ems.com',
                 // password:'abc123',
                 // remember_me:true
-                email:'patient@gmail.com',
-                password:'1111',
+                // email:'patient@gmail.com',
+                // password:'1111',
                 role:"002"
                 // // remember_me:true
             })
@@ -228,4 +228,4 @@ export default Login;
 //         alignItems: 'center',
 //         justifyContent: 'center',
 //     },
-// });
+// }); 
