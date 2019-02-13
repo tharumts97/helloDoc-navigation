@@ -5,6 +5,7 @@ import Icon from 'react-native-vector-icons/FontAwesome5';
 import TabNavigator from '../tabNavigation/TabNavigator'
 import PatientProfile from '../../screens/drawerScreen/Profile/PatientProfile'
 import ViewBasicHealthInfo from '../../screens/drawerScreen/Profile/viewBasicHealthInfo'
+import AddBasicHealth from '../../screens/drawerScreen/Profile/addBasicHealthInfo'
 import Logout from '../../authScreen/Logout/Logout'
 // import { Right } from 'native-base';
 
@@ -41,6 +42,14 @@ export default createDrawerNavigator({
     screen: ViewBasicHealthInfo,
     navigationOptions: {
       drawerLabel: 'ViewBasicHealthInfo',
+      drawerIcon: ({ tintColor }) => <Icon name="user-circle" size={17} />,
+    }
+  },
+
+  AddBasicHealth:{
+    screen: AddBasicHealth,
+    navigationOptions: {
+      drawerLabel: 'AddBasicHealth',
       drawerIcon: ({ tintColor }) => <Icon name="user-circle" size={17} />,
     }
   },
